@@ -1,0 +1,572 @@
+/***************************************
+ * ROOT VARIABLES AND COLOR DEFINITIONS
+ ***************************************/
+:root {
+  --wheel-color-1: #0ff;
+  --wheel-color-2: #ff00ff;
+  --wheel-color-3: #00ff6a;
+  --wheel-text-color: #fff;
+}
+
+/***************************************
+ * BODY AND MAIN LAYOUT
+ ***************************************/
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); /* Dark futuristic gradient */
+  color: #f0f0f0;
+  font-family: 'Orbitron', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+  text-align: center;
+  position: relative;
+}
+
+/***************************************
+ * ANIMATED BACKGROUND EFFECTS
+ ***************************************/
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(0, 255, 255, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(255, 0, 255, 0.05) 0%, transparent 50%);
+  animation: backgroundPulse 10s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes backgroundPulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/***************************************
+ * GAME TITLE STYLING
+ ***************************************/
+h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #0ff;
+  text-shadow: 0 0 2px #0ff, 0 0 4px #0ff;
+}
+
+/***************************************
+ * WALLET AND BETTING INTERFACE
+ ***************************************/
+.wallet-info {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+#wallet {
+  font-weight: bold;
+  color: #0f0;
+  font-size: 1.2rem;
+}
+
+#bet-amount, #add-funds {
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #0ff;
+  background: #111;
+  color: #0ff;
+  font-family: 'Orbitron', sans-serif;
+  width: 200px;
+  text-align: center;
+}
+
+/***************************************
+ * GAME BUTTONS AND CONTROLS
+ ***************************************/
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.btn {
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 10px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.btn.small {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  margin: 0.5rem;
+  background: rgba(0, 255, 255, 0.2);
+  border: 1px solid #0ff;
+}
+
+/***************************************
+ * GAME CHOICE BUTTONS (ROCK, PAPER, SCISSORS)
+ ***************************************/
+.rock {
+  border: 2px solid #ff0000;
+  box-shadow: 0 0 10px #ff0000;
+}
+
+.rock:hover {
+  background: rgba(255, 0, 0, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px #ff0000;
+}
+
+.paper {
+  border: 2px solid #00ff00;
+  box-shadow: 0 0 10px #00ff00;
+}
+
+.paper:hover {
+  background: rgba(0, 255, 0, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px #00ff00;
+}
+
+.scissors {
+  border: 2px solid #0000ff;
+  box-shadow: 0 0 10px #0000ff;
+}
+
+.scissors:hover {
+  background: rgba(0, 0, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px #0000ff;
+}
+
+/***************************************
+ * WHEEL CONTAINER AND SPINNING ANIMATION
+ ***************************************/
+.wheel-wrapper {
+  position: relative;
+  margin: 2rem auto;
+  width: 400px;
+  height: 400px;
+}
+
+#wheel {
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+}
+
+#spin-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+  border: 2px solid #0ff;
+  box-shadow: 0 0 10px #0ff;
+}
+
+#spin-button:hover {
+  background: rgba(0, 255, 255, 0.2);
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+/***************************************
+ * GAME RESULTS AND HISTORY DISPLAY
+ ***************************************/
+#result {
+  margin: 1rem;
+  font-size: 1.5rem;
+  color: #0ff;
+  text-shadow: 0 0 5px #0ff;
+  min-height: 2rem;
+}
+
+#history {
+  margin-top: 1rem;
+  max-height: 150px;
+  overflow-y: auto;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 10px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  color: #0ff;
+  font-size: 0.9rem;
+}
+
+#history p {
+  margin: 5px 0;
+}
+
+/***************************************
+ * STREAK DISPLAY AND ANIMATIONS
+ ***************************************/
+#streak-display {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  animation: streakPulse 2s ease-in-out infinite;
+}
+
+@keyframes streakPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/***************************************
+ * CUSTOM SCROLLBAR STYLING
+ ***************************************/
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 255, 0.5);
+}
+
+/***************************************
+ * FANCY BUTTON ANIMATIONS AND STYLES
+ ***************************************/
+.type--A {
+  --line_color: #555555;
+  --back_color: #ffecf6;
+}
+.type--B {
+  --line_color: #1b1919;
+  --back_color: #e9ecff;
+}
+.type--C {
+  --line_color: #00135c;
+  --back_color: #defffa;
+}
+
+/* Button base styles */
+.button {
+  position: relative;
+  z-index: 0;
+  width: 240px;
+  height: 56px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--line_color);
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Button text container */
+.button__text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* Button border lines */
+.button::before,
+.button::after,
+.button__text::before,
+.button__text::after {
+  content: "";
+  position: absolute;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--line_color);
+  transition: all 0.5s ease;
+}
+
+/* Button line positioning */
+.button::before {
+  top: 0;
+  left: 54px;
+  width: calc(100% - 56px * 2 - 16px);
+}
+.button::after {
+  top: 0;
+  right: 54px;
+  width: 8px;
+}
+.button__text::before {
+  bottom: 0;
+  right: 54px;
+  width: calc(100% - 56px * 2 - 16px);
+}
+.button__text::after {
+  bottom: 0;
+  left: 54px;
+  width: 8px;
+}
+
+/* Button side lines */
+.button__line {
+  position: absolute;
+  top: 0;
+  width: 56px;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Button line decorations */
+.button__line::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 150%;
+  height: 100%;
+  box-sizing: border-box;
+  border-radius: 300px;
+  border: solid 3px var(--line_color);
+}
+
+/* Button line positioning */
+.button__line:nth-child(1),
+.button__line:nth-child(1)::before {
+  left: 0;
+}
+.button__line:nth-child(2),
+.button__line:nth-child(2)::before {
+  right: 0;
+}
+
+/* Button hover effects */
+.button:hover {
+  letter-spacing: 6px;
+}
+.button:hover::before,
+.button:hover .button__text::before {
+  width: 8px;
+}
+.button:hover::after,
+.button:hover .button__text::after {
+  width: calc(100% - 56px * 2 - 16px);
+}
+
+/* Button decoration elements */
+.button__drow1,
+.button__drow2 {
+  position: absolute;
+  z-index: -1;
+  border-radius: 16px;
+  transform-origin: 16px 16px;
+}
+
+/* Button decoration positioning */
+.button__drow1 {
+  top: -16px;
+  left: 40px;
+  width: 32px;
+  height: 0;
+  transform: rotate(30deg);
+}
+.button__drow2 {
+  top: 44px;
+  left: 77px;
+  width: 32px;
+  height: 0;
+  transform: rotate(-127deg);
+}
+
+/* Button decoration lines */
+.button__drow1::before,
+.button__drow1::after,
+.button__drow2::before,
+.button__drow2::after {
+  content: "";
+  position: absolute;
+}
+
+/* Button decoration line positioning */
+.button__drow1::before {
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 32px;
+  border-radius: 16px;
+  transform-origin: 16px 16px;
+  transform: rotate(-60deg);
+}
+.button__drow1::after {
+  top: -10px;
+  left: 45px;
+  width: 0;
+  height: 32px;
+  border-radius: 16px;
+  transform-origin: 16px 16px;
+  transform: rotate(69deg);
+}
+.button__drow2::before {
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 32px;
+  border-radius: 16px;
+  transform-origin: 16px 16px;
+  transform: rotate(-146deg);
+}
+.button__drow2::after {
+  bottom: 26px;
+  left: -40px;
+  width: 0;
+  height: 32px;
+  border-radius: 16px;
+  transform-origin: 16px 16px;
+  transform: rotate(-262deg);
+}
+
+/* Button decoration colors */
+.button__drow1,
+.button__drow1::before,
+.button__drow1::after,
+.button__drow2,
+.button__drow2::before,
+.button__drow2::after {
+  background: var(--back_color);
+}
+
+/***************************************
+ * BUTTON HOVER ANIMATIONS
+ ***************************************/
+.button:hover .button__drow1 {
+  animation: drow1 ease-in 0.06s;
+  animation-fill-mode: forwards;
+}
+.button:hover .button__drow1::before {
+  animation: drow2 linear 0.08s 0.06s;
+  animation-fill-mode: forwards;
+}
+.button:hover .button__drow1::after {
+  animation: drow3 linear 0.03s 0.14s;
+  animation-fill-mode: forwards;
+}
+.button:hover .button__drow2 {
+  animation: drow4 linear 0.06s 0.2s;
+  animation-fill-mode: forwards;
+}
+.button:hover .button__drow2::before {
+  animation: drow3 linear 0.03s 0.26s;
+  animation-fill-mode: forwards;
+}
+.button:hover .button__drow2::after {
+  animation: drow5 linear 0.06s 0.32s;
+  animation-fill-mode: forwards;
+}
+
+/***************************************
+ * BUTTON ANIMATION KEYFRAMES
+ ***************************************/
+@keyframes drow1 {
+  0% { height: 0; }
+  100% { height: 100px; }
+}
+@keyframes drow2 {
+  0% { width: 0; opacity: 0; }
+  10% { opacity: 0; }
+  11% { opacity: 1; }
+  100% { width: 120px; }
+}
+@keyframes drow3 {
+  0% { width: 0; }
+  100% { width: 80px; }
+}
+@keyframes drow4 {
+  0% { height: 0; }
+  100% { height: 120px; }
+}
+@keyframes drow5 {
+  0% { width: 0; }
+  100% { width: 124px; }
+}
+
+/***************************************
+ * CONTAINER AND LAYOUT UTILITIES
+ ***************************************/
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.button:not(:last-child) {
+  margin-bottom: 32px;
+}
+
+/***************************************
+ * RESTART AND BETTING CONTROLS
+ ***************************************/
+#restart-btn {
+  margin-top: 1rem;
+  background-color: #ff0055;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 10px;
+  font-family: 'Orbitron', sans-serif;
+  cursor: pointer;
+  box-shadow: 0 0 10px #ff0055;
+}
+
+#restart-btn:hover {
+  background-color: #ff3377;
+}
+
+.bet-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+#repeat-bet {
+  background: rgba(0, 255, 255, 0.1);
+  border: 1px solid #0ff;
+  transition: all 0.3s ease;
+}
+
+#repeat-bet:hover {
+  background: rgba(0, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+
+
+
+
+  
+  

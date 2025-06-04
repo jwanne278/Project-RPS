@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Futuristic RPS</title>
+  <!-- Google Fonts - Orbitron for futuristic look -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Inline styles for dynamic elements -->
+  <style>
+    /* Pointer triangle that indicates selected segment */
+    .pointer {
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-top: 20px solid red;
+      z-index: 11;
+    }
+    
+    /* Game history section styling */
+    #history {
+      margin-top: 1rem;
+      max-height: 150px;
+      overflow-y: auto;
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 10px;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 400px;
+      color: #0ff;
+      font-size: 0.9rem;
+    }
+    
+    #history p {
+      margin: 5px 0;
+    }
+    
+    /* Restart button styling */
+    #restart-btn {
+      margin-top: 1rem;
+      background-color: #ff0055;
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 10px;
+      font-family: 'Orbitron', sans-serif;
+      cursor: pointer;
+      box-shadow: 0 0 10px #ff0055;
+    }
+    
+    #restart-btn:hover {
+      background-color: #ff3377;
+    }
+  </style>
+</head>
+<body>
+  <!-- Game title -->
+  <h1>Rock Paper Scissors</h1>
+
+  <!-- Wallet and betting section -->
+  <div class="wallet-info">
+    <p>💎 Gems: <span id="wallet">0</span></p>
+    <input type="number" id="add-funds" placeholder="Add gems to wallet" min="1" />
+    <button onclick="addFunds()" class="btn small">Add Gems</button>
+    <div class="bet-controls">
+      <input type="number" id="bet-amount" placeholder="Enter bet amount (gems)" min="1" />
+    </div>
+  </div>
+
+  <!-- Player choice buttons -->
+  <div class="button-group">
+    <button class="btn rock" onclick="selectChoice('rock')">🪨 Rock</button>
+    <button class="btn paper" onclick="selectChoice('paper')">📄 Paper</button>
+    <button class="btn scissors" onclick="selectChoice('scissors')">✂️ Scissors</button>
+  </div>
+
+  <!-- Wheel container -->
+  <div class="wheel-wrapper">
+    <div class="pointer"></div>
+    <canvas id="wheel" width="400" height="400"></canvas>
+    <button id="spin-button" onclick="triggerSpin()">🎯 SPIN</button>
+  </div>
+
+  <!-- Game result and history display -->
+  <div id="result">Make your move.</div>
+  <div id="history"><strong>Game History:</strong></div>
+  <button id="restart-btn" onclick="restartGame()">🔄 Restart Game</button>
+
+  <!-- Audio elements for game sounds -->
+  <audio id="winSound" src="win.mp3" preload="auto"></audio>
+  <audio id="tieSound" src="tie.mp3" preload="auto"></audio>
+  <audio id="loseSound" src="lose.mp3" preload="auto"></audio>
+  <audio id="spinLoop" src="tick.mp3" preload="auto" loop></audio>
+  <audio id="tickSound" src="tick.mp3" preload="auto"></audio>
+
+  <!-- Game logic script -->
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
